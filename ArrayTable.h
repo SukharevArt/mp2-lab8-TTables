@@ -13,12 +13,12 @@ public:
 	bool IsFull() const {
 		return Size == DataCount;
 	}
-	TKey GetKey()const {
+	TKey GetKey() const {
 		if (Curr >= DataCount)
 			throw "WI";
 		return Arr[Curr].key;
 	}
-	TValue GetValue()const {
+	TValue GetValue() const {
 		if (Curr >= DataCount)
 			throw "WI";
 		return Arr[Curr].val;
@@ -30,8 +30,8 @@ public:
 	void GoNext() {
 		Curr++;
 	}
-	bool IsEnd() {
-		return DataCount == Curr + 1;
+	bool IsEnd() const {
+		return DataCount == Curr ;
 	}
 
 };

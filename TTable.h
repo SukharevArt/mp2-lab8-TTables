@@ -8,22 +8,36 @@ typedef std::string TValue;
 struct TRecord {
 	TKey key;
 	TValue val;
-	bool operator==(const TRecord& a) {
+	TRecord(TKey _key = 100,TValue _val ="something") {
+		key = _key;
+		val = _val;
+	}
+	TRecord(const TRecord& a) {
+		key = a.key;
+		val = a.val;
+	}
+	TRecord& operator=(const TRecord& a) {
+		key = a.key;
+		val = a.val;
+		return *this;
+	}
+
+	bool operator==(const TRecord& a) const {
 		return key==a.key;
 	}
-	bool operator!=(const TRecord& a) {
+	bool operator!=(const TRecord& a) const {
 		return key!=a.key;
 	}
-	bool operator<(const TRecord& a) {
+	bool operator<(const TRecord& a) const {
 		return key<a.key;
 	}
-	bool operator>(const TRecord& a) {
+	bool operator>(const TRecord& a) const {
 		return key>a.key;
 	}
-	bool operator>=(const TRecord& a) {
+	bool operator>=(const TRecord& a) const {
 		return key>=a.key;
 	}
-	bool operator<=(const TRecord& a) {
+	bool operator<=(const TRecord& a) const {
 		return key<=a.key;
 	}
 };
@@ -38,22 +52,22 @@ public:
 		Eff = 0;
 	}
 	virtual ~TTable() {}
-	int GetDataCount() {
+	int GetDataCount() const {
 		return DataCount;
 	}
-	int GetEff() {
+	int GetEff() const {
 		return Eff;
 	}
 	void ClearEff() {
 		Eff = 0;
 	}
-	bool IsEmpty() {
+	bool IsEmpty() const {
 		return DataCount == 0;
 	}
 	virtual bool IsFull() const = 0;
-	virtual bool Find() = 0;
-	virtual bool Insert() = 0;
-	virtual bool Delete() = 0;
+	virtual bool Find(TKey _key) = 0;
+	virtual bool Insert(TRecord rec) = 0;
+	virtual bool Delete(TKey _key) = 0;
 	virtual void Reset() = 0;
 	virtual void GoNext() = 0;
 	virtual bool IsEnd() const = 0;
@@ -63,6 +77,6 @@ public:
 		for (a.Reset(); !a.IsEnd(); a.GoNext()) {
 			os << a.GetKey() << " : " << a.GetValue() << "\n";
 		}
+		return os;
 	}
-
 };
