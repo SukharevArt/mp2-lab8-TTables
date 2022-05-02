@@ -1,7 +1,44 @@
 #pragma once
 #include "TScanTable.h"
 
-class TSortTable : public TScanTable {
+class TSortTable : public TScanTable { 
+private:
+	void QSort() {
+		RecQSort(0,DataCount-1);
+	}
+	void RecQSort(int first,int last) {
+		if (first >= last)
+			return;
+		TKey mid = Arr[(first+last)>>1].key;
+		int l, r;
+		l = first; r = last;
+		while (l <= r) {
+			while (Arr[l] < mid) l++,Eff++;
+			while (Arr[r] > mid) r--,Eff++;
+			if (l <= r) {
+				std::swap(Arr[l], Arr[r]);
+				Eff++;
+				l++;
+				r--;
+			}
+		}
+		RecQSort(first,r);
+		RecQSort(l,last);
+	}
+	void SelectionSort() {
+		for (int i = 0; i < Size; i++) {
+			int e = i;
+			for (int j = i + 1; j < Size; j++) {
+				Eff++;
+				if (Arr[e] > Arr[j])
+					e = j;
+			}
+			std::swap(Arr[i], Arr[e]);
+			Eff++;
+		}
+	}
+
+
 public:
 	TSortTable(int _sz = 100) :TScanTable(_sz) {}
 
@@ -49,4 +86,15 @@ public:
 		DataCount--;
 		return true;
 	}
+
+	TSortTable(TScanTable& st): TScanTable(st.GetSize()) {
+		int i;
+		DataCount = st.GetDataCount();
+		for (i = 0,st.Reset(); i < DataCount && !st.IsEnd(); i++, st.GoNext()) {
+			Arr[i].key = st.GetKey();
+			Arr[i].val = st.GetValue();
+		}
+		QSort();
+	}
+
 };

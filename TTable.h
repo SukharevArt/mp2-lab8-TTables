@@ -64,6 +64,9 @@ public:
 	bool IsEmpty() const {
 		return DataCount == 0;
 	}
+	int GetDataCount() {
+		return DataCount;
+	}
 	virtual bool IsFull() const = 0;
 	virtual bool Find(TKey _key) = 0;
 	virtual bool Insert(TRecord rec) = 0;

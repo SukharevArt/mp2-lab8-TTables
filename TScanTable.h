@@ -4,6 +4,7 @@
 class TScanTable : public ArrayTable {
 public:
 	TScanTable(int _sz = 100) : ArrayTable(_sz) {}
+
 	bool Find(TKey _key) {
 		for (int i = 0; i < DataCount; i++) {
 			Eff++;

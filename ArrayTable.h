@@ -7,7 +7,8 @@ protected:
 	int Size;
 	int Curr;
 public:
-	ArrayTable(int _size = 100) : Size(_size), Curr(-1) {
+
+	ArrayTable(int _size = 100) : TTable(), Size(_size), Curr(-1) {
 		Arr = new TRecord[_size];
 	}
 	bool IsFull() const {
@@ -22,6 +23,10 @@ public:
 		if (Curr >= DataCount)
 			throw "WI";
 		return Arr[Curr].val;
+	}
+
+	int GetSize() const {
+		return Size;
 	}
 
 	void Reset() {
