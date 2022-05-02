@@ -6,7 +6,7 @@ typedef int TKey;
 typedef std::string TValue;
 
 struct TRecord {
-	TKey key;
+	TKey key; 
 	TValue val;
 	TRecord(TKey _key = 100,TValue _val ="something") {
 		key = _key;
