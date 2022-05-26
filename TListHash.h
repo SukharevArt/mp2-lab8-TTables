@@ -111,6 +111,7 @@ public:
 	bool Delete(TKey _key) {
 		if (IsEmpty() && Find(_key))
 			return false;
+		Eff++;
 		int pos = HashFunc(_key)%Size;
 		if (Arr[pos]->val.key == _key) {
 			TListNode* tmp = Arr[pos]->pNext;
@@ -120,7 +121,7 @@ public:
 		}
 		TListNode* tmp = Arr[pos];
 		while (tmp->pNext->val.key != _key)
-			tmp = tmp->pNext;
+			tmp = tmp->pNext,Eff++;
 		TListNode* del = tmp->pNext;
 		tmp->pNext = del->pNext;
 		delete del;

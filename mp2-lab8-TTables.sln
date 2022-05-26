@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.32126.315
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32519.379
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "mp2-lab8-TTables", "mp2-lab8-TTables.vcxproj", "{263C4A0C-5565-4571-80BD-3FB7EF191B02}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "WindowForms", "WindowForms\WindowForms.vcxproj", "{AA2CE3C5-9BE9-406A-A4D7-A3B6C3226343}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,14 @@ Global
 		{263C4A0C-5565-4571-80BD-3FB7EF191B02}.Release|x64.Build.0 = Release|x64
 		{263C4A0C-5565-4571-80BD-3FB7EF191B02}.Release|x86.ActiveCfg = Release|Win32
 		{263C4A0C-5565-4571-80BD-3FB7EF191B02}.Release|x86.Build.0 = Release|Win32
+		{AA2CE3C5-9BE9-406A-A4D7-A3B6C3226343}.Debug|x64.ActiveCfg = Debug|x64
+		{AA2CE3C5-9BE9-406A-A4D7-A3B6C3226343}.Debug|x64.Build.0 = Debug|x64
+		{AA2CE3C5-9BE9-406A-A4D7-A3B6C3226343}.Debug|x86.ActiveCfg = Debug|Win32
+		{AA2CE3C5-9BE9-406A-A4D7-A3B6C3226343}.Debug|x86.Build.0 = Debug|Win32
+		{AA2CE3C5-9BE9-406A-A4D7-A3B6C3226343}.Release|x64.ActiveCfg = Release|x64
+		{AA2CE3C5-9BE9-406A-A4D7-A3B6C3226343}.Release|x64.Build.0 = Release|x64
+		{AA2CE3C5-9BE9-406A-A4D7-A3B6C3226343}.Release|x86.ActiveCfg = Release|Win32
+		{AA2CE3C5-9BE9-406A-A4D7-A3B6C3226343}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
