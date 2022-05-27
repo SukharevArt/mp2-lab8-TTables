@@ -33,6 +33,14 @@ public:
 	TTreeStack() {
 		pFirst = nullptr;
 	}
+	~TTreeStack() {
+		TStackNode* tmp;
+		while (pFirst != nullptr) {
+			tmp = pFirst;
+			pFirst = tmp->pNext;
+			delete tmp;
+		}
+	}
 	void Clear() {
 		TStackNode* del;
 		while (pFirst != nullptr) {
@@ -251,8 +259,12 @@ public:
 	bool IsEnd() const{
 		return pCurr==nullptr;
 	}
-	void Print(std::ostream& fout) {
-		PrintRec(fout, pRoot, 0);
+	void PrintTbl(std::ostream& fout) {
+		fout << *this;
+	}
+	friend std::ostream& operator<<(std::ostream& fout,TTreeTable &a) {
+		a.PrintRec(fout, a.pRoot, 0);
+		return fout;
 	}
 
 };

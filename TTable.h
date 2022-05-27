@@ -76,10 +76,13 @@ public:
 	virtual bool IsEnd() const = 0;
 	virtual TKey GetKey() const = 0;
 	virtual TValue GetValue() const = 0;
-	friend std::ostream& operator<<(std::ostream& os, TTable& a) {
+	virtual void PrintTbl(std::ostream& fout) {
+		fout << *this;
+	}
+	friend std::ostream& operator<<(std::ostream& fout, TTable& a) {
 		for (a.Reset(); !a.IsEnd(); a.GoNext()) {
-			os << a.GetKey() << " : " << a.GetValue() << "\n";
+			fout << a.GetKey() << " : " << a.GetValue() << "\n";
 		}
-		return os;
+		return fout;
 	}
 };

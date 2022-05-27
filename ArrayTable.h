@@ -11,6 +11,9 @@ public:
 	ArrayTable(int _size = 100) : TTable(), Size(_size), Curr(-1) {
 		Arr = new TRecord[_size];
 	}
+	~ArrayTable() {
+		delete[] Arr;
+	}
 	bool IsFull() const {
 		return Size == DataCount;
 	}

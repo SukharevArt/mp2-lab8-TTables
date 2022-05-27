@@ -87,7 +87,7 @@ public:
 	}
 		
 	bool Insert(TRecord rec) {
-		if (IsFull() && !Find(rec.key))
+		if (IsFull() || Find(rec.key))
 			return false;
 		DataCount++;
 		Eff++;
