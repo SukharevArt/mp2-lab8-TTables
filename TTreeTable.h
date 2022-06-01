@@ -100,7 +100,7 @@ protected:
 		fout << std::string(level*2,'.') << tmp->rec.key << "\n";
 		PrintRec(fout, tmp->pLeft, level + 1);
 		PrintRec(fout, tmp->pRight, level + 1);
-	}
+	}//
 
 public:
 	TTreeTable():TTable() {
