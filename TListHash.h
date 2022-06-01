@@ -109,7 +109,7 @@ public:
 	}
 		
 	bool Delete(TKey _key) {
-		if (IsEmpty() && Find(_key))
+		if (!Find(_key))
 			return false;
 		Eff++;
 		int pos = HashFunc(_key)%Size;

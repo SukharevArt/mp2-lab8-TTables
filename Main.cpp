@@ -13,7 +13,7 @@ int main() {
 	vector<int> v;
 
 	srand(time(0));
-	int n = 40;
+	int n = 20;
 	tbl1->ClearEff();
 	tbl2->ClearEff();
 	int e = n / 2;
@@ -23,7 +23,7 @@ int main() {
 		a= rand() % (n * 10);
 		while(a==e)
 			a= rand() % (n * 10);
-		a = i;
+		
 		v.push_back(a);
 		tbl1->Insert(TRecord(a, "val" + to_string(a)));
 		tbl2->Insert(TRecord(a, "val" + to_string(a)));
@@ -57,10 +57,13 @@ int main() {
 	
 	tbl1->ClearEff();
 	tbl2->ClearEff();
-	tbl1->Delete(e);
-	tbl2->Delete(e);
-	cout << "Eff Delete TBalTable :" << tbl1->GetEff() << "\n";
-	cout << "Eff Delete TTreeTable :" << tbl2->GetEff() << "\n" << "\n";
+
+	for (int i = 0; i < n; i++)
+		tbl1->Delete(v[i]);
+	for (int i = 0; i < n; i++)
+		tbl2->Delete(v[i]);
+	cout << "Eff Delete TBalTable :" << tbl1->GetEff()/n << "\n";
+	cout << "Eff Delete TTreeTable :" << tbl2->GetEff()/n << "\n" << "\n";
 
 	return 0;
 }

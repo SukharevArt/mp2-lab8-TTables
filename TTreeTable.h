@@ -97,7 +97,7 @@ protected:
 	void PrintRec(std::ostream& fout, TTreeNode* tmp, int level) {
 		if (tmp == nullptr)
 			return;
-		fout << std::string(level*2,' ') << tmp->rec.key << "\n";
+		fout << std::string(level*2,'.') << tmp->rec.key << "\n";
 		PrintRec(fout, tmp->pLeft, level + 1);
 		PrintRec(fout, tmp->pRight, level + 1);
 	}
