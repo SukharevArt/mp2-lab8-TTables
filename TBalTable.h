@@ -124,11 +124,21 @@ int TBalTable::LeftBalanceDel(TTreeNode *&p) {
 		TTreeNode* pl, *pr;
 		pl = p->pLeft;
 		pr = pl->pRight;
-		if (pl->bal == H_Dec) {
+
+		if (pl->bal == H_Ok) {
 			//type1
 			p->pLeft = pl->pRight;
 			pl->pRight = p;
-			pl->bal = p->bal = 0;
+			pl->bal = H_Inc;
+			p->bal = H_Dec;
+			Result = H_Ok;
+			p = pl;
+		}
+		else if (pl->bal == H_Dec) {
+			//type2
+			p->pLeft = pl->pRight;
+			pl->pRight = p;
+			pl->bal = p->bal = H_Ok;
 			Result = H_Dec;
 			p = pl;
 		}
@@ -139,22 +149,20 @@ int TBalTable::LeftBalanceDel(TTreeNode *&p) {
 			pr->pLeft = pl;
 			pr->pRight = p;
 			Result = H_Dec;
-			if (pr->bal==H_Inc) {
+			if (pr->bal == H_Inc) {
 				pl->bal = H_Dec;
 				p->bal = H_Ok;
 			}
 			else {
-				if (pr->bal == H_Dec) {
+				if (pr->bal == H_Ok) {
+					pl->bal = p->bal = H_Ok;
+				}
+				else{
 					pl->bal = H_Ok;
 					p->bal = H_Inc;
 				}
-				else {
-					p->bal = (p->pLeft != nullptr ? H_Dec : H_Ok);
-					pl->bal = (pl->pRight != nullptr ? H_Inc : H_Ok);
-					pr->bal = H_Ok;
-				}
 			}
-			pr->bal = 0;
+			pr->bal = H_Ok;
 			p = pr;
 		}
 	}
@@ -184,8 +192,8 @@ int TBalTable::LeftBalance(TTreeNode *&p) {
 		}
 		else {
 			//type3
-			pl->pRight = pr->pLeft;
 			p->pLeft = pr->pRight;
+			pl->pRight = pr->pLeft;
 			pr->pLeft = pl;
 			pr->pRight = p;
 			Result = H_Ok;
@@ -194,18 +202,18 @@ int TBalTable::LeftBalance(TTreeNode *&p) {
 				p->bal = H_Ok;
 			}
 			else {
-				if (pr->bal == H_Dec) {
-					pl->bal = H_Ok;
-					p->bal = H_Inc;
-				}
-				else {
+				if (pr->bal == H_Ok) {
+					//pl->bal = p->bal = H_Ok;
 					p->bal = (p->pLeft != nullptr ? H_Dec : H_Ok);
 					pl->bal = (pl->pRight != nullptr ? H_Inc : H_Ok);
 
-					pr->bal = H_Ok;
+				}
+				else {
+					pl->bal = H_Ok;
+					p->bal = H_Inc;
 				}
 			}
-			pr->bal = 0;
+			pr->bal = H_Ok;
 			p = pr;
 		}
 	}
@@ -282,15 +290,15 @@ int TBalTable::RightBalance(TTreeNode *&p) {
 			//type2
 			p->pRight = pr->pLeft;
 			pr->pLeft = p;
-			pr->bal = p->bal = 0;
+			pr->bal = p->bal = H_Ok;
 			Result = H_Ok;
 			p = pr;
 		}
 		else {
 			//type4
 
-			p->pRight = pl->pLeft;
 			pr->pLeft = pl->pRight;
+			p->pRight = pl->pLeft;
 			pl->pLeft = p;
 			pl->pRight = pr;
 			Result = H_Ok;
@@ -299,18 +307,18 @@ int TBalTable::RightBalance(TTreeNode *&p) {
 				p->bal = H_Dec;
 			}
 			else {
-				if (pl->bal == H_Dec) {
-					pr->bal = H_Inc;
+				if (pl->bal == H_Ok) {
+					//pr->bal = p->bal = H_Ok;
+					pr->bal = (pr->pLeft != nullptr ? H_Dec : H_Ok);
+					p->bal = (p->pRight != nullptr ? H_Inc : H_Ok);
+
+				}
+				else{
+					pr->bal = H_Dec;
 					p->bal = H_Ok;
 				}
-				else {
-					pr->bal = (pr->pLeft!=nullptr?H_Dec:H_Ok);
-					p->bal = (p->pRight!=nullptr?H_Inc:H_Ok);
-
-					pl->bal = H_Ok;
-				}
 			}
-			pl->bal = 0;
+			pl->bal = H_Ok;
 			p = pl;
 			
 		}
